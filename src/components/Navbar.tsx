@@ -32,14 +32,14 @@ export function Navbar () {
   return (
     <nav className="">
       <div className="block lg:hidden w-fit">
-        <button className="block" onClick={handleShowNav} name="menu"><List size={32} /></button>
+        <button className="block transition-all hover:text-primary-500" onClick={handleShowNav} name="menu"><List size={32} /></button>
         
         {openNav && createPortal(
           <div className="absolute top-0 left-0 z-50 w-full h-full overflow-hidden">
-            <div className={"absolute top-0 left-0 z-50 w-full md:w-1/2 md:left-1/2 h-full bg-primary-700 transition-all duration-300 shadow-black " + styleClass}>
-              <button className="text-slate-100 pt-10 w-full flex justify-end pr-6" onClick={handleShowNav} name="Fechar menu"><X size={32} /></button>
-              <div className="flex flex-col divide-y divide-secondary-300 divide-opacity-20 py-4">
-                {links.map((link) => <Link className="w-full py-5 text-xl text-center text-slate-200 hover:text-slate-100" key={link.name} href={link.path} >{link.name}</Link>)}
+            <div className={"absolute top-0 left-0 z-50 w-full md:w-1/2 md:left-1/2 h-full bg-background transition-all duration-300  shadow-black " + styleClass}>
+              <button className="text-slate-100 pt-10 w-full flex justify-end pr-6 transition-all hover:text-primary-500" onClick={handleShowNav} name="Fechar menu"><X size={32} /></button>
+              <div className="flex flex-col divide-y divide-secondary-300 divide-opacity-10 py-4">
+                {links.map((link) => <Link className="w-full py-5 text-xl text-center text-slate-200 transition-all hover:text-primary-500" key={link.name} href={link.path} >{link.name}</Link>)}
               </div>
             </div>
           </div>, document.body 

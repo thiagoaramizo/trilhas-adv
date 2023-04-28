@@ -3,7 +3,7 @@ import { SectionFullBgContainer } from "./SectionFullBgContainer";
 export function Footer () {
   return (
     <footer>
-      <SectionFullBgContainer classNameBg="bg-slate-950" className="px-4 py-8">
+      <SectionFullBgContainer classNameBg="bg-slate-950" className="px-4 py-8 pt-16">
         
         <div className="flex flex-col md:flex-row lg:flex-row gap-8">
           <div className="w-full">
