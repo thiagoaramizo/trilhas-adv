@@ -2,15 +2,16 @@
 import { PathSmallCard } from '@/components/PathSmallCard'
 import { SectionContainer } from '@/components/SectionContainer'
 import { SectionFullBgContainer } from '@/components/SectionFullBgContainer'
-import { CubeFocus, Megaphone, ProjectorScreenChart } from '@phosphor-icons/react'
-import { Inter } from 'next/font/google'
+import { learnPaths } from '@/data/learnPaths'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 
-const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
+
+  const paths = learnPaths
+
   return (
     <>
     <Head>
@@ -25,7 +26,7 @@ export default function Home() {
               <strong className='block'>Seu caminho para</strong>evoluir na advocacia
             </h1>
             <span className='block text-lg mt-6 mb-8 text-secondary-300'>Aprenda os principais conceitos da advocacia moderna com profissionais experientes do mercado.</span>
-            <Link className='block bg-primary-500 w-fit px-6 py-2 rounded-md text-slate-800 font-semibold transition-colors hover:bg-slate-100 animate-slideInLeft' href={'./'}>Acessar trilhas</Link>
+            <Link className='block bg-primary-500 w-fit px-6 py-2 rounded-md text-slate-800 font-semibold transition-all hover:scale-105 hover:bg-slate-100 animate-slideInLeft' href={'/trilhas'}>Acessar trilhas</Link>
           </div>
           <div className='animate-slideInRight hidden md:block lg:block'>
             <Image src='/imagem_destaque.png' alt="" width={960} height={960} />
@@ -51,10 +52,8 @@ export default function Home() {
           <h1 className='text-3xl font-bold'>Conheça as trilhas</h1>
           <div>
             <div className='grid md:grid-cols-2 lg:grid-cols-2 gap-8'>
-              <PathSmallCard name='Legal Design' link='./' icon={CubeFocus} />
-              <PathSmallCard name='Marketing' link='./' icon={Megaphone} />
-              <PathSmallCard name='Controladoria' link='./' />
-              <PathSmallCard name='Jurimetria' link='./' icon={ProjectorScreenChart} />
+
+              {paths.map((path) => <PathSmallCard key={path.id} name={path.name} link={'/trilhas/' + path.slug} />)}
 
             </div>
           </div>
@@ -72,7 +71,7 @@ export default function Home() {
             <div className='flex-1 flex flex-col justify-center items-center md:items-start lg:items-start pb-32 text-center md:text-left lg:text-left md:pb-0 lg:pd-0 '>
               <h3 className='text-2xl font-bold mb-4'>Censo da Tecnologia da Advocacia</h3>
               <p className='mb-8'>Relatório da pesquisa realizada em 2022/2023 com os advogados mineiros sobre o uso e domínio das tecnologias pelos advogados.</p>
-              <Link className='block bg-secondary-500 w-fit px-6 py-2 rounded-md text-slate-100 font-semibold' href={'./'}>Acessar relatório</Link>
+              <Link className='block bg-secondary-500 w-fit px-6 py-2 rounded-md text-slate-100 font-semibold transition-all hover:scale-105' href={'./'}>Acessar relatório</Link>
             </div>  
           </div>
 

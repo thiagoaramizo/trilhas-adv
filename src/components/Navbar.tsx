@@ -1,3 +1,4 @@
+import { learnPaths } from "@/data/learnPaths";
 import { List, X } from "@phosphor-icons/react";
 import Link from "next/link" 
 import { useState } from "react";
@@ -5,12 +6,7 @@ import { createPortal } from "react-dom";
 
 export function Navbar () {
 
-  const links = [
-    { name:'Legal Design', path: './.' },
-    { name:'Jurimetria', path: './.' },
-    { name:'Controladoria', path: './.' },
-    { name:'Marketing', path: './.' },
-  ]
+  const links = learnPaths
 
   const [openNav, setOpenNav] = useState(false)
   const [animationNav, setAnimationNav] = useState(false)
@@ -35,11 +31,11 @@ export function Navbar () {
         <button className="block transition-all hover:text-primary-500" onClick={handleShowNav} name="menu"><List size={32} /></button>
         
         {openNav && createPortal(
-          <div className="absolute top-0 left-0 z-50 w-full h-full overflow-hidden">
+          <div className="fixed top-0 left-0 z-50 w-full h-full overflow-hidden">
             <div className={"absolute top-0 left-0 z-50 w-full md:w-1/2 md:left-1/2 h-full bg-background transition-all duration-300  shadow-black " + styleClass}>
               <button className="text-slate-100 pt-10 w-full flex justify-end pr-6 transition-all hover:text-primary-500" onClick={handleShowNav} name="Fechar menu"><X size={32} /></button>
               <div className="flex flex-col divide-y divide-secondary-300 divide-opacity-10 py-4">
-                {links.map((link) => <Link className="w-full py-5 text-xl text-center text-slate-200 transition-all hover:text-primary-500" key={link.name} href={link.path} >{link.name}</Link>)}
+                {links.map((link) => <Link className="w-full py-5 text-xl text-center text-slate-200 transition-all hover:text-primary-500" key={link.name} href={'/trilhas/' + link.slug} onClick={handleShowNav}>{link.name}</Link>)}
               </div>
             </div>
           </div>, document.body 
@@ -48,7 +44,7 @@ export function Navbar () {
 
       <div className="hidden lg:block">
         <div className="flex gap-24">
-          {links.map((link) => <Link className="transition-all duration-300 hover:text-primary-500" key={link.name} href={link.path} >{link.name}</Link>)}
+          {links.map((link) => <Link className="transition-all duration-300 hover:text-primary-500" key={link.id} href={'/trilhas/' + link.slug} >{link.name}</Link>)}
         </div>
       </div>
     
