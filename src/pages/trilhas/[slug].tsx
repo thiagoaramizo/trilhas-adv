@@ -4,16 +4,19 @@ import { Path } from "@phosphor-icons/react";
 import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
 
-export const getStaticPaths: GetStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = () => {
   return {
     paths: [
-      { params: { slug: 'legal-design' } }
+      { params: { slug: 'legal-design' } },
+      { params: { slug: 'marketing' } },
+      { params: { slug: 'controladoria' } },
+      { params: { slug: 'jurimetria' } }
     ],
-    fallback: true
+    fallback: false
   }
 }
 
-export const getStaticProps: GetStaticProps<any, {slug: string}> = async ({params}) => {
+export const getStaticProps: GetStaticProps<any, {slug: string}> = ({params}) => {
 
   // @ts-ignore
   const pathSlug = params.slug
@@ -38,11 +41,12 @@ interface PathDinamicPageProps {
 export default function PathPage ( { path }:PathDinamicPageProps) {
   
   const IconOfPath = Path
+  const titleString = "Trilha " + path.name + " - Trilhas da Advocacia"
   
   return (
     <>
       <Head>
-        <title>Trilha {path.name} - Trilhas da Advocacia</title>
+        <title>{titleString}</title>
       </Head>
       
       <SectionContainer className="py-12">
