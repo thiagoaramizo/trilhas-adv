@@ -15,11 +15,11 @@ export default function TrilhasPage () {
 
        <SectionContainer className='px-4 py-12'>
         <div className='flex-1 flex flex-col gap-8 pb-12'>
-          <h1 className='text-3xl font-bold'>Conheça as trilhas</h1>
+          <h1 className='text-3xl font-bold md:text-4xl uppercase'>Conheça as trilhas</h1>
           <div>
             <div className='grid gap-8'>
 
-              {paths.map((path) => <PathFullCard key={path.id} name={path.name} link={'./trilhas/' + path.slug} steps={path.name.length} />)}
+              {paths.map((path) => <PathFullCard key={path.id} name={path.name} link={'./trilhas/' + path.slug} steps={path.lessons.length} />)}
 
             </div>
           </div>

@@ -8,6 +8,7 @@ export function Navbar () {
 
   const links = learnPaths
 
+
   const [openNav, setOpenNav] = useState(false)
   const [animationNav, setAnimationNav] = useState(false)
 
@@ -44,7 +45,9 @@ export function Navbar () {
 
       <div className="hidden lg:block">
         <div className="flex gap-24">
-          {links.map((link) => <Link className="transition-all duration-300 hover:text-primary-500" key={link.id} href={'/trilhas/' + link.slug} >{link.name}</Link>)}
+          <Link className="transition-all duration-300 hover:text-primary-500" href="/trilhas/legal-design" >Legal Design</Link>
+          <Link className="transition-all duration-300 hover:text-primary-500" href="/trilhas/inteligencia-artificial" >Inteligência Artificial</Link>
+          <Link className="transition-all duration-300 hover:text-primary-500" href="/trilhas" >Todas as Trilhas</Link>
         </div>
       </div>
     
