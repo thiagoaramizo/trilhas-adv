@@ -19,6 +19,9 @@ export const learnPaths: LearnPathsType[] = [
       lessons[3],
       lessons[4],
       lessons[5],
+      lessons[6],
+      lessons[7],
+      lessons[8],
     ]
   },
   {
