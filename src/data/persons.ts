@@ -1,6 +1,6 @@
 export interface PersonType {
   name: string
-  position: string
+  position?: string
   pic?: string
   linkedin?: string
   facebook?: string

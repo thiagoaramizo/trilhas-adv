@@ -3,7 +3,7 @@ import { PersonType } from "./persons"
 export interface LessonType {
   id: string
   name: string
-  slug?: string
+  slug: string
   createdAt?: string
   categories: string[]
   autors?: PersonType[]
@@ -23,17 +23,20 @@ export const lessons: LessonType[] = [
   {
     id: '1',
     name: 'O que é o Legal Design?',
-    categories: ['Legal Design']
+    categories: ['Legal Design'],
+    slug: 'o-que-e-o-legal-design',
   },
   {
     id: '2',
     name: 'Visual Law e Legal Design',
-    categories: ['Legal Design']
+    categories: ['Legal Design'],
+    slug: 'visual-law-e-legal-design',
   },
   {
     id: '3',
     name: 'Detox law: simplificando a linguagem jurídica',
-    categories: ['Legal Design']
+    categories: ['Legal Design'],
+    slug: 'detox-law-simplificando-a-linguagem-juridica',
   },
   {
     id: '4',
@@ -43,7 +46,6 @@ export const lessons: LessonType[] = [
     autors: [
       {
         name: 'Thiago Aramizo Ribeiro',
-        position: 'Instrutor',
         pic: 'thiago-aramizo-ribeiro.jpg',
       }
     ],
@@ -59,12 +61,14 @@ export const lessons: LessonType[] = [
   {
     id: '5',
     name: 'Formatando um contrato de honorários com  Visual Law',
-    categories: ['Legal Design']
+    categories: ['Legal Design'],
+    slug: 'formatando-um-contrato-de-honorarios-com-visual-law',
   },
   {
     id: '6',
     name: 'Feedback para o cliente',
-    categories: ['Legal Design']
+    categories: ['Legal Design'],
+    slug: 'feedback-para-o-cliente',
   }
   
 ]

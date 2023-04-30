@@ -60,7 +60,7 @@ export default function PathPage ( { path }:PathDinamicPageProps) {
         </div>
       </SectionContainer>
 
-      <SectionContainer className="flex flex-col gap-8 pt-12 pb-24 px-4">
+      <SectionContainer className="flex flex-col gap-10 pt-12 pb-24 px-4">
         {path.lessons.map((lesson)=>{
           return (
             <LessonCard key={lesson.id} lesson={lesson}/>
@@ -68,7 +68,7 @@ export default function PathPage ( { path }:PathDinamicPageProps) {
         })}
         <div className="relative">
           <div className="">
-              <div style={{height: 'calc(100% + 2rem)', left: '2.125rem'}} className="absolute top-6  w-1 bg-background"></div>
+              <div style={{height: 'calc(100% + 2rem)', left: '2.125rem'}} className="absolute top-6 w-1 bg-background"></div>
               <div className="absolute top-6 left-6 w-6 h-6 bg-background rounded-full border-solid border-4 border-secondary-300"></div>
           </div>
           <div className="flex items-top gap-2 rounded-lg px-6 pl-16 py-6">
