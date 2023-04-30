@@ -6,6 +6,7 @@ import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 
 export const getStaticPaths: GetStaticPaths = () => {
@@ -46,7 +47,13 @@ export default function LessonPage ( { lesson }:LessonPageProps) {
   
   const router = useRouter()
   const titleString = lesson.name + " - Trilhas da Advocacia"
-  const lessonVideoUrl = lesson.youtubeVideoLink || ''
+  const [lessonVideoUrl, setLessonVideoUrl] = useState('')
+
+  useEffect(()=>{
+    if (lesson.youtubeVideoLink) {
+      setLessonVideoUrl(lesson.youtubeVideoLink)
+    }
+  }, [lesson.youtubeVideoLink])
 
   const getYoutubeVideoId = (url: string) => {
     var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
