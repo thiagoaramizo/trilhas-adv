@@ -39,7 +39,7 @@ export default function LessonPage () {
   return (
     <>
       <Head>
-        <title>{}</title>
+        <title>{lesson && lesson.name + '- Trilhas da Advocacia'}</title>
       </Head>
       
       {lesson &&

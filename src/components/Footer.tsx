@@ -22,11 +22,15 @@ export function Footer () {
         <div className="flex flex-col md:flex-row gap-8">
           <div className="w-full">
             <span className="block text-sm mb-3">Realização</span>
-            <div className="bg-white rounded-md text-slate-800 p-4">OAB</div>
+            <div className="bg-white rounded-md text-slate-800 p-4 h-28 flex items-center">
+              <Image src={'/logo_oab.png'} alt='OAB' width={350} height={50}></Image>
+            </div>
           </div>
           <div className="w-full">
             <span className="block text-sm mb-3">Apoio</span>
-            <div className="bg-white rounded-md text-slate-800 p-4">KLSN</div>
+            <div className="bg-white rounded-md text-slate-800 p-4 h-28 flex items-center">
+              <Image src={'/logo_klsn.png'} alt='KLSN' width={200} height={50}></Image>
+            </div>
           </div>
         </div>
         <span className="block text-sm font-light opacity-60 mt-8">2023 © Todos os direitos reservados</span>
