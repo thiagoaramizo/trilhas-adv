@@ -10,7 +10,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 import { CircleNotch } from "@phosphor-icons/react";
-import { YoutubePlayer } from "@/components/YoutubePlayer";
+import ReactPlayer from "react-player/youtube";
 
 export default function LessonPage () {
   
@@ -71,7 +71,7 @@ export default function LessonPage () {
 
         {lesson.youtubeVideoLink && 
           <div className="flex justify-center items-center rounded-lg px-6 py-8 border border-primary-500">
-            {loadState ? <YoutubePlayer link={lesson.youtubeVideoLink} /> : <div className="h-96 flex justify-center items-center"><CircleNotch size={32} weight="bold" className="animate-spin" /></div>}
+            {loadState ? <ReactPlayer url={lesson.youtubeVideoLink} /> : <div className="h-96 flex justify-center items-center"><CircleNotch size={32} weight="bold" className="animate-spin" /></div>}
           </div>
         }
 
