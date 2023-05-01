@@ -8,6 +8,9 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
+import { CircleNotch } from "@phosphor-icons/react";
+import { YoutubePlayer } from "@/components/YoutubePlayer";
+
 
 export const getStaticPaths: GetStaticPaths = () => {
   
@@ -47,19 +50,17 @@ export default function LessonPage ( { lesson }:LessonPageProps) {
   
   const router = useRouter()
   const titleString = lesson.name + " - Trilhas da Advocacia"
-  const [lessonVideoUrl, setLessonVideoUrl] = useState('')
+  const [loadState, setLoadState] = useState(false)
 
-  useEffect(()=>{
-    if (lesson.youtubeVideoLink) {
-      setLessonVideoUrl(lesson.youtubeVideoLink)
-    }
-  }, [lesson.youtubeVideoLink])
-
-  const getYoutubeVideoId = (url: string) => {
-    var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
-    var match = url.match(regExp);
-    return (match&&match[7].length==11)? match[7] : false;
+  async function loadVideo() {
+    const time = await new Promise((t)=>{setTimeout(t, 2000)})
+    setLoadState(true)
   }
+
+  useEffect( ()=>{
+    loadVideo()
+  },[])
+
   
   return (
     <>
@@ -94,15 +95,8 @@ export default function LessonPage ( { lesson }:LessonPageProps) {
         </div>
 
         {lesson.youtubeVideoLink && 
-          <div className="flex justify-center rounded-lg px-6 py-8 border border-primary-500">
-            <div className="w-fit rounded-md overflow-hidden">
-              <iframe 
-                id="player" 
-                width="640" height="360"
-                src={"http://www.youtube.com/embed/"+getYoutubeVideoId(lessonVideoUrl)+"?enablejsapi=1&origin=https://trilhas.adv.br&rel=0"}
-                className="w-full aspect-video"
-              ></iframe>
-            </div>
+          <div className="flex justify-center items-center rounded-lg px-6 py-8 border border-primary-500">
+            {loadState ? <YoutubePlayer link={lesson.youtubeVideoLink} /> : <div className="h-96 flex justify-center items-center"><CircleNotch size={32} weight="bold" className="animate-spin" /></div>}
           </div>
         }
 
