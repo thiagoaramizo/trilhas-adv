@@ -1,7 +1,8 @@
+'use client';
+
 import { Person } from "@/components/Person";
 import { SectionContainer } from "@/components/SectionContainer";
 import { LessonType, lessons } from "@/data/lessons";
-import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
@@ -11,63 +12,37 @@ import { useEffect, useState } from "react";
 import { CircleNotch } from "@phosphor-icons/react";
 import { YoutubePlayer } from "@/components/YoutubePlayer";
 
-
-export const getStaticPaths: GetStaticPaths = () => {
-  
-  const paths = lessons.map( (lesson:LessonType) => {
-    return ({ params: {slug: lesson.slug}})
-  })
-
-  return {
-    paths,
-    fallback: false
-  }
-}
-
-export const getStaticProps: GetStaticProps<any, {slug: string}> = ({params}) => {
-
-  // @ts-ignore
-  const lessonSlug = params.slug
-
-  const allLessons = [...lessons]
-  const lessonIndex = allLessons.findIndex((lesson)=> lesson.slug === lessonSlug )
-  const lesson = allLessons[lessonIndex]
-
-  return {
-    props: {
-      lesson
-    },
-    //revalidate: 60 * 60 * 2 // 2 hours
-    revalidate: 1
-  }
-}
-
-interface LessonPageProps {
-  lesson: LessonType
-}
-
-export default function LessonPage ( { lesson }:LessonPageProps) {
+export default function LessonPage () {
   
   const router = useRouter()
-  const titleString = lesson.name + " - Trilhas da Advocacia"
   const [loadState, setLoadState] = useState(false)
-
+  const slug = router.query['slug'] as string
+  const [lesson, setLesson] = useState<LessonType>()
+  
   async function loadVideo() {
-    const time = await new Promise((t)=>{setTimeout(t, 2000)})
+    const time = await new Promise((t)=>{setTimeout(t, 500)})
     setLoadState(true)
   }
 
+  function getLesson( slug: string ) {
+    const allLessons = [...lessons]
+    const lessonIndex = allLessons.findIndex((lesson)=> lesson.slug === slug )
+    setLesson(allLessons[lessonIndex])
+  }
+
   useEffect( ()=>{
+    getLesson(slug)
     loadVideo()
-  },[])
+  },[slug])
 
   
   return (
     <>
       <Head>
-        <title>{titleString}</title>
+        <title>{}</title>
       </Head>
       
+      {lesson &&
       <article>
         <SectionContainer className="pt-12 px-4 pb-24 flex flex-col gap-8">
 
@@ -104,7 +79,7 @@ export default function LessonPage ( { lesson }:LessonPageProps) {
 
         </SectionContainer>
       </article>
-      
+      }
       
     </>
     
